@@ -101,10 +101,9 @@ export default function Page() {
           </a>
           <a 
             href="/settings" 
-            className={styles.integrationIcon} 
+            className={`${styles.integrationIcon} ${styles.settingsIcon}`} 
             aria-label="Settings" 
             title="Settings"
-            style={{ filter: 'brightness(1.5) contrast(1.2)' }}
           >
             ⚙️
           </a>
