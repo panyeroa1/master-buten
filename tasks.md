@@ -2359,3 +2359,152 @@ Tests:
 - `npm run build`: PASS.
 - Manual Code verification: Logic and UI labels confirmed.
 Result: PASS
+
+Task ID: T-0070
+Title: Deploy to master-buten GitHub
+Status: DONE
+Owner: Miles
+
+START LOG
+
+Timestamp: 2026-01-06 00:10
+Plan:
+- Commit all remaining changes.
+- Push current branch to `master-buten` remote on GitHub.
+
+END LOG
+
+Timestamp: 2026-01-06 00:12
+Changed:
+- Pushed local `main` branch to `master-buten` remote.
+Tests:
+- GitHub push confirmed successful.
+Result: PASS
+
+Task ID: T-0071
+Title: Create 'buten' branch on master-buten remote
+Status: DONE
+Owner: Miles
+
+START LOG
+
+Timestamp: 2026-01-06 00:15
+Plan:
+- Create local branch `buten`.
+- Push branch `buten` to `master-buten` remote.
+
+END LOG
+
+Timestamp: 2026-01-06 00:16
+Changed:
+- Branch `buten` created and pushed to `master-buten`.
+Tests:
+- Git push confirmed successful.
+Result: PASS
+
+Task ID: T-0072
+Title: Deploy to 'joe' GitHub repository
+Status: DONE
+Owner: Miles
+
+START LOG
+
+Timestamp: 2026-01-06 00:25
+Plan:
+- Add remote `joe` pointing to `https://github.com/panyeroa1/joe.git`.
+- Force-push `buten` branch to `main` on `joe` remote.
+
+END LOG
+
+Timestamp: 2026-01-06 00:27
+Changed:
+- Project deployed to the `joe` repository.
+Tests:
+- Git push confirmed successful.
+Result: PASS
+
+Task ID: T-0073
+Title: Production Robustness Fixes
+Status: DONE
+Owner: Miles
+
+START LOG
+
+Timestamp: 2026-01-06 00:35
+Plan:
+- Allow `meetingId` initialization for guests in `OrbitApp.tsx`.
+- Improve translation route logging and warnings for missing environment variables.
+
+END LOG
+
+Timestamp: 2026-01-06 00:38
+Changed:
+- `OrbitApp.tsx`: Removed session requirement for `meetingId`.
+- `app/api/orbit/translate/route.ts`: Added production warnings and detailed error logging.
+Tests:
+- `npm run build`: PASS.
+Result: PASS
+
+Task ID: T-0074
+Title: Sync Robustness Fixes to GitHub Remotes
+Status: DONE
+Owner: Miles
+
+START LOG
+
+Timestamp: 2026-01-06 00:40
+Plan:
+- Push the latest `buten` branch to `master-buten` and `joe` remotes.
+
+END LOG
+
+Timestamp: 2026-01-06 00:42
+Changed:
+- Pushed robustness fixes to GitHub remotes.
+Result: PASS
+
+Task ID: T-0075
+Title: Fix Translation Target Language Selection
+Status: DONE
+Owner: Miles
+
+START LOG
+
+Timestamp: 2026-01-06 00:45
+Plan:
+- Update front-end components to send the full language name (e.g., "Spanish (Spain)") instead of the code (e.g., "es-ES") to the translation API.
+- Prevent translation attempts when "Auto Detect" is selected as the target language.
+
+END LOG
+
+Timestamp: 2026-01-06 00:48
+Changed:
+- `OrbitApp.tsx`: Now sends `selectedLanguageRef.current.name` to `/api/orbit/translate`.
+- `OrbitTranslatorVertical.tsx`: Now sends `selectedLanguageRef.current.name` and skips translation if `code === 'auto'`.
+Tests:
+- `npm run build`: PASS.
+Result: PASS
+
+Task ID: T-0076
+Title: Integrate Gemini Live Transcription
+Status: DONE
+Owner: Miles
+
+START LOG
+
+Timestamp: 2026-01-06 00:50
+Plan:
+- Add Gemini Live audio streaming logic to `geminiService.ts`.
+- Implement real-time PCM audio capture and transmission in `OrbitApp.tsx`.
+- Update `TranslatorDock.tsx` to support rotating between 3 engines (Standard, Pro, Live).
+
+END LOG
+
+Timestamp: 2026-01-06 00:55
+Changed:
+- `lib/orbit/services/geminiService.ts`: Added `startTranscriptionSession`.
+- `lib/orbit/OrbitApp.tsx`: Added Gemini recording loop and engine state.
+- `lib/orbit/components/TranslatorDock.tsx`: Updated toggle rotation (STD -> PRO -> LIVE).
+Tests:
+- `npm run build`: PASS.
+Result: PASS
